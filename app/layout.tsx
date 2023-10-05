@@ -1,3 +1,4 @@
+import DesignerContextProvider from '@/components/context/DesignerContext';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { ClerkProvider } from '@clerk/nextjs';
@@ -20,17 +21,19 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <body className={inter.className}>
-            {children}
-            <Toaster />
-          </body>
-        </ThemeProvider>
+        <DesignerContextProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <body className={inter.className}>
+              {children}
+              <Toaster />
+            </body>
+          </ThemeProvider>
+        </DesignerContextProvider>
       </html>
     </ClerkProvider>
   );
