@@ -154,10 +154,6 @@ export async function GetFormContentByUrl(formUrl: string) {
 }
 
 export async function SubmitForm(formUrl: string, content: string) {
-  const user = await currentUser();
-  if (!user) {
-    throw new UserNotFoundError();
-  }
   return await prisma.form.update({
     data: {
       submissions: {
@@ -172,6 +168,22 @@ export async function SubmitForm(formUrl: string, content: string) {
     where: {
       shareURL: formUrl,
       published: true,
+    },
+  });
+}
+
+export async function GetFormWithSubmissions(id: number) {
+  const user = await currentUser();
+  if (!user) {
+    throw new UserNotFoundError();
+  }
+  return await prisma.form.findUnique({
+    where: {
+      userId: user.id,
+      id,
+    },
+    include: {
+      FormSubmissions: true,
     },
   });
 }

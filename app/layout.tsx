@@ -22,7 +22,6 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <NextTopLoader />
         <DesignerContextProvider>
           <ThemeProvider
             attribute="class"
@@ -31,6 +30,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <body className={inter.className}>
+              <NextTopLoader />
               {children}
               <Toaster />
             </body>
