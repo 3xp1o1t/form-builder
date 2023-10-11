@@ -1,3 +1,4 @@
+import { CheckboxFieldFormElement } from './fields/checkbox-field';
 import { DateFieldFormElement } from './fields/date-field';
 import { NumberFieldFormElement } from './fields/number-field';
 import { ParagraphFieldFormElement } from './fields/paragraph-field';
@@ -19,7 +20,8 @@ export type ElementsType =
   | 'NumberField'
   | 'TextAreaField'
   | 'DateField'
-  | 'SelectField';
+  | 'SelectField'
+  | 'CheckboxField';
 export type SubmitFunction = (key: string, value: string) => void;
 
 export type FormElement = {
@@ -68,4 +70,5 @@ export const FormElements: FormElementsType = {
   TextAreaField: TextAreaFieldFormElement,
   DateField: DateFieldFormElement,
   SelectField: SelectFieldFormElement,
+  CheckboxField: CheckboxFieldFormElement,
 };
